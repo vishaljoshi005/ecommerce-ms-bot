@@ -8,7 +8,6 @@ const { ComponentDialog,
 
 const { ProductDb } = require('../config/db.config');
 
-// const card = require('../monitorDialog.json');
 const card = require('../resources/cards/monitorDialog.json');
 
 const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
@@ -55,8 +54,6 @@ class MonitorDialog extends ComponentDialog {
             attachmentLayout: AttachmentLayoutTypes.Carousel
         });
 
-
-
         await timeout(3000);
         await stepContext.context.sendActivity('Or you can also filter product');
         // TEMP
@@ -72,17 +69,11 @@ class MonitorDialog extends ComponentDialog {
             });
 
             return Dialog.EndOfTurn;
-            //     return await stepContext.prompt(CHOICE_PROMPT_ONE,{
-            //     prompt: 'Which company are you looking for?',
-            //     choices: ChoiceFactory.toChoices(['Samsung', 'Dell' , 'Apple'])
-            // });
         }
         return stepContext.endDialog();
     }
 
     async askScreen(stepContext) {
-    // console.log(stepContext.context.activity.value.os.toLowerCase());
-
         await timeout(1000);
 
         await stepContext.context.sendActivity('Here\'s the best matching laptop according to your requirements');
@@ -97,13 +88,6 @@ class MonitorDialog extends ComponentDialog {
 
         await timeout(6000);
         return await stepContext.endDialog();
-
-
-    // StepContext.values.company = StepContext.result.value;
-    // return await StepContext.prompt(CHOICE_PROMPT_TWO,{
-    //     prompt: 'Which screen size are you interested In?',
-    //     choices: ChoiceFactory.toChoices(['21', '28' , '32'])
-    // });
     }
 
     async finalStep(StepContext) {

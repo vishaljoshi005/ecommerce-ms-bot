@@ -19,8 +19,6 @@ const CHOICE_PROMPT_ONE = 'CHOICE_PROMPT_ONE';
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const { CancelAndHelpDialog } = require('./cancelHelpDialog');
-
 class CancelOrder extends ComponentDialog {
     constructor(id) {
         super(id || CANCEL_ORDER);
@@ -30,7 +28,6 @@ class CancelOrder extends ComponentDialog {
             .addDialog(new WaterfallDialog(CANCEL_ORDER_WATERFALL, [
                 this.firstStep.bind(this),
                 this.secondStep.bind(this)
-                // this.finalStep.bind(this)
             ]));
 
         this.initialDialogId = CANCEL_ORDER_WATERFALL;
@@ -52,12 +49,6 @@ class CancelOrder extends ComponentDialog {
 
         await timeout(5000);
         return stepContext.endDialog();
-
-        // stepContext.values.order = stepContext.result;
-        // return await stepContext.prompt(CHOICE_PROMPT_ONE,{
-        //     prompt: 'Please select the reason to cancel. If the options do not fit choose others.',
-        //     choices: ChoiceFactory.toChoices(['Order by mistake', 'Others'])
-        // });
     }
 
     async finalStep(stepContext) {

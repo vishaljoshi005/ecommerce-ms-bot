@@ -17,11 +17,8 @@ const CHOICE_PROMPT_TWO = 'CHOICE_PROMPT_TWO';
 const CHOICE_PROMPT_THREE = 'CHOICE_PROMPT_THREE';
 const CHOICE_PROMPT_FOUR = 'CHOICE_PROMPT_FOUR';
 
-const { CancelAndHelpDialog } = require('./cancelHelpDialog');
-
 const { ProductDb } = require('../config/db.config');
 
-// const card = require('../AdaptiveCardLaptop.json');
 const card = require('../resources/cards/AdaptiveCardLaptop.json');
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -81,10 +78,6 @@ class LaptopDialog extends ComponentDialog {
             });
 
             return Dialog.EndOfTurn;
-            // return await stepContext.prompt(CHOICE_PROMPT_ONE, {
-            //     prompt: 'What type of OS would you like to buy?',
-            //     choices: ChoiceFactory.toChoices(['Windows', 'Linux', 'MacOS'])
-            // });
         }
         return await stepContext.endDialog();
     }
@@ -97,19 +90,12 @@ class LaptopDialog extends ComponentDialog {
         await timeout(2000);
 
         const url = await ProductDb.findOne({ device: 'laptop', brand: stepContext.context.activity.value.os.toLowerCase() });
-        // console.log(url);
         await stepContext.context.sendActivity({
             attachments: [this.createHeroCard(url.brand, url.image, url.url)]
         });
 
         await timeout(4000);
         return await stepContext.endDialog();
-
-        // stepContext.values.os = stepContext.result.value;
-        // return await stepContext.prompt(CHOICE_PROMPT_TWO, {
-        //     prompt: 'What screen size in inches are you going for?',
-        //     choices: ChoiceFactory.toChoices(['13', '14', '15'])
-        // });
     }
 
     async askRam(StepContext) {
@@ -132,7 +118,6 @@ class LaptopDialog extends ComponentDialog {
         StepContext.values.processor = StepContext.result.value;
         // Database query for fecthing the product URL
         const url = await ProductDb.findOne({ device: 'laptop', brand: StepContext.values.os });
-        // console.log(url);
         await StepContext.context.sendActivity({
             attachments: [this.createHeroCard(url.brand, url.image, url.url)]
         });

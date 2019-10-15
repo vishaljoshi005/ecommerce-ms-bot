@@ -9,7 +9,6 @@ const { ComponentDialog,
 
 const { CardFactory, AttachmentLayoutTypes } = require('botbuilder');
 
-// const card = require('../returnOrder.json');
 const card = require('../resources/cards/returnOrder.json');
 
 const RETURN_ORDER = 'RETURN_ORDER';
@@ -50,7 +49,6 @@ class ReturnOrder extends ComponentDialog {
         });
 
         return Dialog.EndOfTurn;
-        // return await stepContext.prompt(TEXT_PROMPT_ONE, 'Please enter your order number');
     }
 
     async secondStep(stepContext) {
@@ -64,21 +62,8 @@ class ReturnOrder extends ComponentDialog {
         await stepContext.context.sendActivity('Your Money will be refunded in your account within 5 days.');
 
         return await stepContext.endDialog();
-
-        // stepContext.values.order = stepContext.result;
-        // return await stepContext.prompt(CHOICE_PROMPT_ONE, {
-        //     prompt: 'Please select the reason to cancel. If the options do not fit choose others.',
-        //     choices: ChoiceFactory.toChoices(['Order by mistake', 'Too small', 'Too big', 'Others'])
-        // });
     }
 
-    // async thirdStep(stepContext) {
-    //     return await stepContext.prompt(CHOICE_PROMPT_TWO, {
-    //         prompt: 'How would you like to handle the return?',
-    //         choices: ChoiceFactory.toChoices(['Refund in my bank account', 'order different size'])
-    //         // choices: ChoiceFactory.toChoices(['Refund in my bank account', 'order different size'])
-    //     });
-    // }
 
     async fourStep(stepContext) {
         return await stepContext.prompt(CHOICE_PROMPT_THREE, {

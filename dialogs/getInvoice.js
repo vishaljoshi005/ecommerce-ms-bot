@@ -25,15 +25,11 @@ class GetInvoice extends ComponentDialog {
                 this.createReceiptCardMouse(),
                 this.createReceiptCardLaptop(),
                 this.createReceiptCardMonitor()
-                // this.createHeroCardMobile(),
-                // this.createHeroCardLaptop(),
-                // this.createHeroCardMonitor()
             ],
             attachmentLayout: AttachmentLayoutTypes.Carousel
         });
 
         await stepContext.context.sendActivity('Choose from above Or you can type in your order number.');
-        // Temp Solution
         return Dialog.EndOfTurn;
     }
 
@@ -51,8 +47,8 @@ class GetInvoice extends ComponentDialog {
 
     createHeroCardMobile() {
         return CardFactory.heroCard(
-            'Mobile', // https://i.ibb.co/7CmPFVV/iphes.jpg
-            CardFactory.images(['https://i.ibb.co/kXcKFjc/neee.jpg']), // https://i.ibb.co/kXcKFjc/neee.jpg
+            'Mobile',
+            CardFactory.images(['https://i.ibb.co/kXcKFjc/neee.jpg']),
             CardFactory.actions([
                 {
                     type: 'imBack',

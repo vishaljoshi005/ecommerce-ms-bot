@@ -22,8 +22,6 @@ class ManageOrder extends ComponentDialog {
             .addDialog(whereOrder)
             .addDialog(returnOrder)
             .addDialog(new WaterfallDialog(MANAGE_ORDER_WATERFALL, [
-                // this.askEmail.bind(this),
-                // this.askPassword.bind(this),
                 this.firstStep.bind(this),
                 this.secondStep.bind(this),
                 this.finalStep.bind(this)
@@ -31,8 +29,6 @@ class ManageOrder extends ComponentDialog {
 
         this.initialDialogId = MANAGE_ORDER_WATERFALL;
     }
-
-    async askEmail(stepContext) {}
 
     async firstStep(stepContext) {
         await timeout(2000);
@@ -47,13 +43,10 @@ class ManageOrder extends ComponentDialog {
 
         switch (stepContext.result.value) {
         case 'Where\'s my order?':
-            // begin some dialog
             return await stepContext.beginDialog('WHERE_ORDER');
         case 'Cancel my order' :
-            // begin some dialog
             return await stepContext.beginDialog('CANCEL_ORDER');
         case 'Return my order':
-            // begin some dialog
             return await stepContext.beginDialog('RETURN_ORDER');
         }
     }

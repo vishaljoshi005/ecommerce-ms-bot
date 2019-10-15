@@ -4,7 +4,6 @@ const { Dialog,
 const { CardFactory } = require('botbuilder');
 const { User } = require('../models/userModel');
 
-// const card = require('../loginCard.json');
 const card = require('../resources/cards/loginCard.json');
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -47,9 +46,6 @@ class LoginDialog extends ComponentDialog {
 
         console.log('[LOGIN Dialog JS] UserProfile state object');
         console.log(userProfile);
-
-        // const temp = await this.userInfoState.get(stepContext.context);
-        // console.log(temp);
 
         console.log(stepContext.values.userInfo);
 

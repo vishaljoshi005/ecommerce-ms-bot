@@ -10,7 +10,6 @@ const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
 
 const { ProductDb } = require('../config/db.config');
 
-// const card = require('../CameraCard.json');
 const card = require('../resources/cards/CameraCard.json');
 
 const TEXT_PROMPT = 'TEXT_PROMPT';
@@ -18,9 +17,6 @@ const TEXT_PROMPT_ONE = 'TEXT_PROMPT_ONE';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
 
 const CAMERA_DIALOG_WATERFALL = 'CAMERA_DIALOG_WATERFALL';
-
-const { CancelAndHelpDialog } = require('./cancelHelpDialog');
-
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 class CameraDialog extends ComponentDialog {
@@ -34,7 +30,6 @@ class CameraDialog extends ComponentDialog {
                 this.showExisting.bind(this),
                 this.askPixel.bind(this),
                 this.askbudget.bind(this)
-            // this.finalStep.bind(this)
             ]));
 
         this.initialDialogId = CAMERA_DIALOG_WATERFALL;
@@ -62,20 +57,14 @@ class CameraDialog extends ComponentDialog {
     }
 
     async askPixel(stepContext) {
-    // console.log('before IF');
         if (stepContext.result.toLowerCase() === 'yes' || stepContext.result.toLowerCase() === 'alright' || stepContext.result.toLowerCase() === 'ok') {
-        // console.log('after');
             await stepContext.context.sendActivity({
                 attachments: [this.createAdaptiveCard()]
             });
 
             return Dialog.EndOfTurn;
-            // return await stepContext.prompt(CHOICE_PROMPT,{
-            //     prompt: 'How many pixels are you looking for?',
-            //     choices: ChoiceFactory.toChoices(['16MP', '32MP'])
-            // });
         }
-        return await stepContext.next();
+        return await stepContext.endDialog();
     }
 
     async askbudget(stepContext) {
@@ -84,19 +73,12 @@ class CameraDialog extends ComponentDialog {
         await timeout(1000);
 
         const url = await ProductDb.findOne({ device: 'camera', mp: '32MP' });
-        // console.log(url);
         await stepContext.context.sendActivity({
             attachments: [this.createHeroCard(url.device, url.image, url.url)]
         });
 
         await timeout(6000);
         return await stepContext.endDialog();
-
-        // StepContext.values.pixel = StepContext.result.value || '32MP';
-
-    // return await StepContext.prompt(TEXT_PROMPT, {
-    //     prompt: 'How much are you willing to spend? ex.60000'
-    // });
     }
 
     async finalStep(StepContext) {

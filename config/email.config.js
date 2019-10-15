@@ -4,17 +4,17 @@ const transporters = nodemailer.createTransport({
     tls: 'yes',
     host: 'email-smtp.us-west-2.amazonaws.com',
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false,
     auth: {
         user: process.env.AmazonEmailUser,
-        pass: process.env.AmazonPasswordUser // generated ethereal password
+        pass: process.env.AmazonPasswordUser
     }
 });
 
 const dataObject = {
-    from: '"Ecommerce Bot" <vishal.provis@gmail.com>', // sender address
-    //   to: "joshi.vishal859@gmail.com", // list of receivers
-    subject: 'Ticket Detail', // Subject line
+    from: '"Ecommerce Bot" <vishal.provis@gmail.com>',
+    //   to:  // list of receivers
+    subject: 'Ticket Detail',
     text: `` // plain text body
 };
 

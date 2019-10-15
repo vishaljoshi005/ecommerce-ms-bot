@@ -64,7 +64,7 @@ class Bot extends ActivityHandler {
     createHeroCardFind() {
         return CardFactory.heroCard(
             'Search Product',
-            CardFactory.images(['https://i.ibb.co/vhMsr9k/search-product.jpg']), // 'https://i.ibb.co/1J6g20y/findpro.png'
+            CardFactory.images(['https://i.ibb.co/vhMsr9k/search-product.jpg']),
             CardFactory.actions([
                 {
                     type: 'imBack',
@@ -78,7 +78,7 @@ class Bot extends ActivityHandler {
     createHeroCardManage() {
         return CardFactory.heroCard(
             'Manage orders',
-            CardFactory.images(['https://i.ibb.co/rQfNQ6H/manageorder.jpg']), // https://i.ibb.co/86Jz57Y/orderman.jpg
+            CardFactory.images(['https://i.ibb.co/rQfNQ6H/manageorder.jpg']),
             CardFactory.actions([
                 {
                     type: 'imBack',
@@ -92,7 +92,7 @@ class Bot extends ActivityHandler {
     createHeroCardGift() {
         return CardFactory.heroCard(
             'Find Perfect Gift',
-            CardFactory.images(['https://i.ibb.co/RDv3cx7/findgift.jpg']), // https://i.ibb.co/jgVxqps/findgif.jpg
+            CardFactory.images(['https://i.ibb.co/RDv3cx7/findgift.jpg']),
             CardFactory.actions([
                 {
                     type: 'imBack',
@@ -106,7 +106,7 @@ class Bot extends ActivityHandler {
     createHeroCardGetInvoice() {
         return CardFactory.heroCard(
             'Get Invoice',
-            CardFactory.images(['https://i.ibb.co/zSxn88J/invoice.jpg']), // https://i.ibb.co/m8dVp76/newinvoice.jpg
+            CardFactory.images(['https://i.ibb.co/zSxn88J/invoice.jpg']),
             CardFactory.actions([
                 {
                     type: 'imBack',
@@ -120,7 +120,7 @@ class Bot extends ActivityHandler {
     createHeroCardRegisterComplaint() {
         return CardFactory.heroCard(
             'Register Complaint',
-            CardFactory.images(['https://i.ibb.co/g4vmNcf/registercomplaint.png']), // https://i.ibb.co/59H2cFf/complaint-1.jpg
+            CardFactory.images(['https://i.ibb.co/g4vmNcf/registercomplaint.png']),
             CardFactory.actions([
                 {
                     type: 'imBack',

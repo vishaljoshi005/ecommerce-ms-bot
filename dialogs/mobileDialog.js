@@ -9,7 +9,6 @@ const { ComponentDialog,
 
 const { ProductDb } = require('../config/db.config');
 
-// const card = require('../mobileCard.json');
 const card = require('../resources/cards/mobileCard.json');
 
 const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
@@ -58,7 +57,6 @@ class MobileDialog extends ComponentDialog {
 
         await timeout(3000);
         await stepContext.context.sendActivity('Or you can also filter product');
-        // TEMP
         return await stepContext.prompt(TEXT_PROMPT_ONE, ' Do you want to customise mobile?');
     }
 
@@ -80,18 +78,12 @@ class MobileDialog extends ComponentDialog {
         await timeout(1000);
 
         const url = await ProductDb.findOne({ device: 'mobile', brand: stepContext.context.activity.value.company.toLowerCase() });
-        // console.log(url);
         await stepContext.context.sendActivity({
             attachments: [this.createHeroCard(url.brand, url.image, url.url)]
         });
 
         await timeout(6000);
         return await stepContext.endDialog();
-        // StepContext.values.company = StepContext.result.value;
-
-        // return await StepContext.prompt(TEXT_PROMPT, {
-        //     prompt: 'How much are you looking to spend? ex.60000'
-        // });
     }
 
     async finalStep(StepContext) {

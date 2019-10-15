@@ -81,16 +81,13 @@ class ClothesDialog extends ComponentDialog {
 
         result.forEach((element) => {
             attach.push(this.createHeroCardOne(element.product, element.brand, element.description, element.image));
-            // console.log(element);
         });
 
         await stepContext.context.sendActivity({
-            // attachments: [ this.createHeroCard(details.product, result.image)]
             attachments: attach, // attach
             attachmentLayout: AttachmentLayoutTypes.Carousel
         });
 
-        // await stepContext.context.sendActivity(`This is a place for a Hero Card for showing product image`);
         await stepContext.context.sendActivity(`Here are the collected details Product ${ this.productDetails.product } , Size ${ this.productDetails.size } and color ${ this.productDetails.color } and brand: ${ this.productDetails.brand }`);
 
         await timeout(5000);
@@ -116,20 +113,6 @@ class ClothesDialog extends ComponentDialog {
             return 'shirt';
         }
     }
-
-    // createHeroCard(product, imageUrl) {
-    //     return CardFactory.heroCard(
-    //         product,
-    //         CardFactory.images([imageUrl]),
-    //         CardFactory.actions([
-    //             {
-    //                 type: 'openUrl',
-    //                 title: 'Buy Now',
-    //                 value: 'www.amazon.in'
-    //             }
-    //         ])
-    //     );
-    // }
 
     createHeroCardOne(product, brand, description, imageUrl) {
         return {

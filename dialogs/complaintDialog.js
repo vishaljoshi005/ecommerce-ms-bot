@@ -2,7 +2,6 @@
 const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
 const { WaterfallDialog, Dialog, ComponentDialog } = require('botbuilder-dialogs');
 
-// const card = require('../ComplaintCard.json');
 const card = require('../resources/cards/ComplaintCard.json');
 
 const { message, mail } = require('../config/email.config');

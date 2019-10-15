@@ -8,8 +8,6 @@ const { ComponentDialog,
 
 const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
 
-const { CancelAndHelpDialog } = require('./cancelHelpDialog');
-
 // const card = require('../giftChoicesCard.json');
 const card = require('../resources/cards/giftChoicesCard.json');
 
@@ -45,12 +43,7 @@ class GiftDialog extends ComponentDialog {
         await stepContext.context.sendActivity('I am happy to help you find the perfect gift for your loved ones.');
 
         await timeout(1000);
-        // await stepContext.context.sendActivity('Who is this gift for?');
         await timeout(2000);
-        // await stepContext.context.sendActivity({
-        //     attachments: [this.createHeroCardMale(), this.createHeroCardFemale()],
-        //     attachmentLayout: AttachmentLayoutTypes.Carousel
-        // });
 
         return await stepContext.next();
     }
@@ -61,11 +54,6 @@ class GiftDialog extends ComponentDialog {
         });
 
         return Dialog.EndOfTurn;
-
-        // return await stepContext.prompt(CHOICE_PROMPT_ONE, {
-        //     prompt: "What is the age of the person this gift is for?",
-        //     choices: ChoiceFactory.toChoices(['>10' , '10-20', '<20' ])
-        // });
     }
 
     async thirdStep(stepContext) {
@@ -236,7 +224,7 @@ class GiftDialog extends ComponentDialog {
 
     createHeroCardMotivational() {
         return CardFactory.heroCard(
-            'Motivational Books', // https://i.ibb.co/3hf3NMh/m.jpg
+            'Motivational Books',
             CardFactory.images(['https://i.ibb.co/WKKt01B/mzzz.jpg']),
             CardFactory.actions([
                 {
@@ -250,7 +238,7 @@ class GiftDialog extends ComponentDialog {
 
     createHeroCardPhilosophical() {
         return CardFactory.heroCard(
-            'Philosophical Books', // https://i.ibb.co/5YrsKqh/p.jpg
+            'Philosophical Books',
             CardFactory.images(['https://i.ibb.co/Bs0yLt9/pzzzz.jpg']),
             CardFactory.actions([
                 {
@@ -264,7 +252,7 @@ class GiftDialog extends ComponentDialog {
 
     createHeroCardFiction() {
         return CardFactory.heroCard(
-            'Fiction Books', // https://i.ibb.co/NWJyR72/f.jpg
+            'Fiction Books',
             CardFactory.images(['https://i.ibb.co/5kz0hpn/fictzzz.jpg']),
             CardFactory.actions([
                 {
