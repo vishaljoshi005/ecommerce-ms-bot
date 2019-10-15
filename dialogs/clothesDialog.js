@@ -75,6 +75,7 @@ class ClothesDialog extends ComponentDialog {
     }
 
     async final(stepContext) {
+        this.productDetails.brand = stepContext.result;
         const attach = [];
 
         const result = await ProductDb.find({ product: this.getProduct(this.productDetails.product) });
