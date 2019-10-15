@@ -12,7 +12,7 @@ const transporters = nodemailer.createTransport({
 });
 
 const dataObject = {
-    from: '"Ecommerce Bot" <upturncode@gmail.com>', // sender address
+    from: '"Ecommerce Bot" <vishal.provis@gmail.com>', // sender address
     //   to: "joshi.vishal859@gmail.com", // list of receivers
     subject: 'Ticket Detail', // Subject line
     text: `` // plain text body

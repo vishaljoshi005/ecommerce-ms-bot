@@ -41,7 +41,7 @@ class ComplaintDialog extends ComponentDialog {
         const reason = stepContext.context.activity.value.reason;
         const inputMessage = stepContext.context.activity.value.message;
 
-        message.to = `joshi.vishal859@gmail.com, ${ email }`;
+        message.to = `vishal.provis@gmail.com, ${ email }`;
         message.subject = reason;
         message.text = JSON.stringify(inputMessage);
 
