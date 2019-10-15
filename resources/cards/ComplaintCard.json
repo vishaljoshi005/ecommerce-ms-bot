@@ -1,0 +1,81 @@
+{
+    "type": "AdaptiveCard",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "Register Complaint",
+            "horizontalAlignment": "Center",
+            "fontType": "Monospace",
+            "color": "Light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. Enter your email address",
+            "color": "Light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Email",
+            "id": "email",
+            "separator": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "2. Choose appropriate reason, if not listed choose others.",
+            "color": "Light"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "placeholder": "Select Reason",
+            "choices": [
+                {
+                    "title": "Order not received",
+                    "value": "ONR"
+                },
+                {
+                    "title": "Wrong order received",
+                    "value": "WOR"
+                },
+                {
+                    "title": "Product not as described",
+                    "value": "PNAD"
+                },
+                {
+                    "title": "Others",
+                    "value": "others"
+                }
+            ],
+            "id": "reason",
+            "separator": true,
+            "wrap": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "3. Describe complaint (Not more than 150 words)",
+            "color": "Light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Complaint Query",
+            "id": "message",
+            "separator": true,
+            "isMultiline": true,
+            "maxLength": 5000
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit"
+                }
+            ],
+            "horizontalAlignment": "Center"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

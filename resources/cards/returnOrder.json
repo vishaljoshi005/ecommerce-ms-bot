@@ -1,0 +1,88 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "Return My Order",
+            "horizontalAlignment": "Center",
+            "fontType": "Monospace",
+            "color": "light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. Please enter your order number?",
+            "spacing": "Medium",
+            "horizontalAlignment": "Left",
+            "color": "light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Order Number",
+            "id": "email",
+            "spacing": "Small"
+        },
+        {
+            "type": "TextBlock",
+            "text": "2. Please select the reason to cancel. If the options do not fit choose others.",
+            "wrap": true,
+            "color": "light"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "placeholder": "Select Reason",
+            "choices": [
+                {
+                    "title": "Order by mistake",
+                    "value": "mistake"
+                },
+                {
+                    "title": "Too small",
+                    "value": "small"
+                },
+                {
+                    "title": "Too big",
+                    "value": "big"
+                },
+                {
+                    "title": "Others",
+                    "value": "others"
+                }
+            ],
+            "id": "reason"
+        },
+        {
+            "type": "TextBlock",
+            "text": "3. How would you like to handle the return?",
+            "color": "light"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "placeholder": "Refund / Exchange",
+            "choices": [
+                {
+                    "title": "Refund",
+                    "value": "refund"
+                },
+                {
+                    "title": "Exchange",
+                    "value": "exchange"
+                }
+            ],
+            "id": "returnChoice"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg"
+}

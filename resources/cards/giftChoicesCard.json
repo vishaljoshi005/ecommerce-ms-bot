@@ -1,0 +1,142 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "Gift Filter",
+            "horizontalAlignment": "Center",
+            "fontType": "Monospace",
+            "color": "light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. What is the age of this person?",
+            "spacing": "Medium",
+            "size": "Medium",
+            "color": "light"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Less Than 10",
+                    "id": "less",
+                    "data": {
+                        "age":"less"
+                    }
+                },
+                {
+                    "type": "Action.ShowCard",
+                    "title": "10 - 20",
+                    "card": {
+                        "type": "AdaptiveCard",
+                        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                        "body": [{
+                            "type": "TextBlock",
+                            "text": "2. What are they most interested in ?",
+                            "spacing": "Medium",
+                            "size": "Medium",
+                            "color": "light"
+                        },
+                        {
+                            "type": "Input.ChoiceSet",
+                            "placeholder": "Placeholder text",
+                           
+                            
+                            "choices": [
+                                {
+                                    "title": "Reading",
+                                    "value": "reading",
+                                    "color": "alert"
+                                },
+                                {
+                                    "title": "Video Game",
+                                    "value": "video_game"
+                                },
+                                {
+                                    "title": "Outdoor Games",
+                                    "value": "outdoor_games"
+                                }
+                            ],
+                            "style": "expanded",
+                            "id": "interest",
+                            "separator": true,
+                            "spacing": "Medium"
+                        },
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.Submit",
+                                    "title": "Submit",
+                                    "data": {
+                                        "age":"between"
+                                    }
+                                }
+                            ]
+                        }       
+                    ]
+                    }
+                },
+                {
+                    "type": "Action.ShowCard",
+                    "title": "Above 20",
+                    "card": {
+                        "type": "AdaptiveCard",
+                        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                        "body": [{
+                            "type": "TextBlock",
+                            "text": "2. What are they most interested in ?",
+                            "spacing": "Medium",
+                            "size": "Medium",
+                            "color": "light"
+                        },
+                        {
+                            "type": "Input.ChoiceSet",
+                            "placeholder": "Placeholder text",
+                            "choices": [
+                                {
+                                    "title": "Art",
+                                    "value": "art"
+                                },
+                                {
+                                    "title": "Music",
+                                    "value": "music"
+                                },
+                                {
+                                    "title": "Books",
+                                    "value": "books"
+                                }
+                            ],
+                            "style": "expanded",
+                            "id": "moreinterest",
+                            "separator": true,
+                            "spacing": "Medium"
+                        },
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.Submit",
+                                    "title": "Submit",
+                                    "data": {
+                                        "age":"more"
+                                    }
+                                }
+                            ]
+                        }       
+                    ]
+                    }
+                    
+                   
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg"
+}

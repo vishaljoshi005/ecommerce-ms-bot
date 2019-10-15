@@ -1,0 +1,68 @@
+{
+    "type": "AdaptiveCard",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Filter Laptop Search",
+            "horizontalAlignment": "center",
+            "color": "light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. What type of os would you prefer?",
+            "color": "light"
+
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Windows, Linux, MacOS",
+            "id": "os"
+        },
+        {
+            "type": "TextBlock",
+            "text": "2. What screen size in inches are you going for?",
+            "color": "light"
+
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "13, 14, 15",
+            "id": "screen"
+        },
+        {
+            "type": "TextBlock",
+            "text": "3. How much ram do you need?",
+            "color": "light"
+
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "4GB, 8GB",
+            "id": "ram"
+        },
+        {
+            "type": "TextBlock",
+            "text": "3. Which processor do you prefer?",
+            "color": "light"
+
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "i5, i9",
+            "id": "processor"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "seperator": "true",
+                    "title": "Submit"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

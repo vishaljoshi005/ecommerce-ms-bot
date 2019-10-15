@@ -1,0 +1,43 @@
+{
+    "type": "AdaptiveCard",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Filter camera Search",
+            "horizontalAlignment": "center",
+            "color": "light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. Which company are you looking for?",
+            "color": "light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Apple, Xiaomi",
+            "id": "company"
+        },
+        {
+            "type": "TextBlock",
+            "text": "2. What is your budget?",
+            "color": "light"
+        },
+        {
+            "type": "Input.Text",
+            "id": "budget"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "seperator": "true",
+                    "title": "Submit"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

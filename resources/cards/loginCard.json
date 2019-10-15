@@ -1,0 +1,43 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "text": "LOGIN",
+            "horizontalAlignment": "Center",
+            "fontType": "Monospace",
+            "weight": "Bolder"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Email"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "email",
+            "id": "email",
+            "style": "Email"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Password"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "password",
+            "id": "password"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Login"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

@@ -1,0 +1,36 @@
+{
+    "type": "AdaptiveCard",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "Where's My Order",
+            "horizontalAlignment": "Center",
+            "fontType": "Monospace",
+            "color": "light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. Please enter your order number?",
+            "color": "light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "order number",
+            "id": "order"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

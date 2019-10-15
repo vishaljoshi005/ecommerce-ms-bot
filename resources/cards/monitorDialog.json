@@ -1,0 +1,44 @@
+{
+    "type": "AdaptiveCard",
+    "backgroundImage": "https://i.ibb.co/MGfJnhB/bg.jpg",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Filter Monitor Search",
+            "horizontalAlignment": "center",
+            "color": "light"
+        },
+        {
+            "type": "TextBlock",
+            "text": "1. Which company would you prefer?",
+            "color": "light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Samsung, Dell, Apple",
+            "id": "brand"
+        },
+        {
+            "type": "TextBlock",
+            "text": "2. What screen size in inches are you going for?",
+            "color": "light"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "21, 28, 32",
+            "id": "screen"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "seperator": "true",
+                    "title": "Submit"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
