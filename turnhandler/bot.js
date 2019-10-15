@@ -16,7 +16,6 @@ class Bot extends ActivityHandler {
 
         this.onMessage(async (context, next) => {
             await this.botManager.run(context, this.dialogState);
-
             await next();
         });
 

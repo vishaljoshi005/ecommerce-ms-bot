@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { ComponentDialog } = require('botbuilder-dialogs');
 // eslint-disable-next-line no-unused-vars
-const { AttachmentLayoutTypes, CardFactory, ActivityTypes } = require('botbuilder');
+const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
 const { LuisRecognizer } = require('botbuilder-ai');
 
 const { LuisConfig } = require('../config/luis.config');
@@ -110,7 +110,10 @@ class MainDialog extends ComponentDialog {
                 return await stepContext.beginDialog('BUY_PRODUCT', { product: 'product' });
 
             case 'Manage Order':
-                if (this.getUserInfo(stepContext)) {
+                // test
+                console.log('test');
+                console.log(this.getUserInfo(stepContext));
+                if (await this.getUserInfo(stepContext)) {
                     return await stepContext.beginDialog('MANAGE_ORDER');
                 }
                 return await stepContext.beginDialog('LOGIN_DIALOG', { dialog: 'MANAGE_ORDER' });
@@ -119,7 +122,7 @@ class MainDialog extends ComponentDialog {
                 return await stepContext.beginDialog('BUY_PRODUCT', { product: 'gift' });
 
             case 'Get Invoice':
-                if (this.getUserInfo(stepContext)) {
+                if (await this.getUserInfo(stepContext)) {
                     return await stepContext.beginDialog('GET_INVOICE');
                 }
                 return await stepContext.beginDialog('LOGIN_DIALOG', { dialog: 'GET_INVOICE' });
