@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 3978;
 
 // Handler Import
 const { Bot } = require('./turnhandler/bot');
-// const { BotComponentPilot } = require('./turnhandler/botComponentPilot');
 const { MainDialog } = require('./turnhandler/mainDialog');
 
 // Dialog Imports

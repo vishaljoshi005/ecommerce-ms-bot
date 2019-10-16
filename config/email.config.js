@@ -2,12 +2,12 @@ const nodemailer = require('nodemailer');
 
 const transporters = nodemailer.createTransport({
     tls: 'yes',
-    host: 'email-smtp.us-west-2.amazonaws.com',
+    host: process.env.AzureEmailHost,
     port: 587,
     secure: false,
     auth: {
-        user: process.env.AmazonEmailUser,
-        pass: process.env.AmazonPasswordUser
+        user: process.env.AzureEmailKey,
+        pass: process.env.AzureEmailSecret
     }
 });
 
