@@ -87,13 +87,11 @@ class MainDialog extends ComponentDialog {
         // This here when the user changes context, userInput then processed by luis
         // This method is for handling the onContinuesMethod of this dialog
         if (stepContext.options.text) {
-            console.log('Value is being manipulated from here');
             userInput = stepContext.options.text;
             // Test Code for LUIS
             stepContext.context.activity.text = userInput;
         }
-        console.log('After stepcontext options');
-        console.log(userInput);
+
         if (userInput === 'Find Products' || userInput === 'Manage Order' ||
         userInput === 'Find Gift' || userInput === 'Get Invoice' || userInput === 'Register Complaint') {
             // Variable for context property
@@ -162,8 +160,6 @@ class MainDialog extends ComponentDialog {
 
         if (LuisRecognizer.topIntent(result) === 'ManageOrder') {
             if (await this.getUserInfo(stepContext)) {
-                console.log('inside method');
-                console.log(this.getUserInfo(stepContext));
                 return await stepContext.beginDialog('MANAGE_ORDER');
             }
 
@@ -274,7 +270,6 @@ class MainDialog extends ComponentDialog {
     }
 
     // Helper method for getting saved user info
-
     async getUserInfo(stepContext) {
         return await this.userInfoState.get(stepContext.context, null);
     }
