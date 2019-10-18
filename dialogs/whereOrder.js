@@ -2,11 +2,10 @@
 const { ComponentDialog,
     WaterfallDialog,
     TextPrompt,
-    ChoiceFactory,
-    ChoicePrompt,
     Dialog } = require('botbuilder-dialogs');
 
-const { AttachmentLayoutTypes, CardFactory } = require('botbuilder');
+const { CardFactory } = require('botbuilder');
+const { Order } = require('../config/db.config');
 
 const card = require('../resources/cards/whereOrder.json');
 
@@ -40,11 +39,19 @@ class WhereOrder extends ComponentDialog {
     }
 
     async secondStep(stepContext) {
-        await timeout(2000);
-        await stepContext.context
-            .sendActivity(`Your order number ${ stepContext.context.activity.value.order } is currently in transit at local post office and it will be delivered today.`);
-        await timeout(5000);
-        return await stepContext.endDialog();
+        const orderNumber = stepContext.context.activity.value.order;
+        await timeout(1000);
+        const data = await Order.findOne({ orderNumber });
+        let status = null;
+        if (data) {
+            status = data.status;
+            await stepContext.context
+                .sendActivity(`Your order number ${ orderNumber } is currently in ${ status } at local post office and it will be delivered today.`);
+            await timeout(5000);
+            return await stepContext.endDialog();
+        }
+        await stepContext.context.sendActivity('This order does not exist please enter correct order number');
+        return await stepContext.replaceDialog(this.id);
     }
 
     createOrderCard() {
