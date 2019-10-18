@@ -1,4 +1,5 @@
 // eslint-disable-next-line no-unused-vars
+// This method is for obtaining a generic value for contextProperty
 function createGenericContext(value) {
     switch (value) {
     case 'Manage Order':

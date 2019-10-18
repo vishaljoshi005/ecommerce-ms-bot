@@ -1,6 +1,7 @@
 const { Dialog, WaterfallDialog, ComponentDialog } = require('botbuilder-dialogs');
-
 const { CardFactory, AttachmentLayoutTypes } = require('botbuilder');
+
+const { Invoice } = require('../config/db.config');
 
 const GET_INVOICE = 'GET_INVOICE';
 const GENERATE_INVOICE_WATERFALL = 'GENERATE_INVOICE_WATERFALL';
@@ -19,18 +20,22 @@ class GetInvoice extends ComponentDialog {
 
     async showExistingOrders(stepContext) {
         await stepContext.context.sendActivity('Here are your recent orders.');
+        const productData = [];
+        const orders = await Invoice.find({});
 
+        orders.forEach((element) => {
+            productData
+                .push(this.createReceiptCardData(element.product, element.image, element.orderNumber,
+                    element.paymentMethod, element.price, element.tax, element.total));
+        });
+        console.log(productData.length);
         await stepContext.context.sendActivity({
-            attachments: [
-                this.createReceiptCardMouse(),
-                this.createReceiptCardLaptop(),
-                this.createReceiptCardMonitor()
-            ],
+            attachments: productData,
             attachmentLayout: AttachmentLayoutTypes.Carousel
         });
 
         await stepContext.context.sendActivity('Choose from above Or you can type in your order number.');
-        return Dialog.EndOfTurn;
+        return stepContext.endDialog();
     }
 
     async secondStep(stepContext) {
@@ -43,49 +48,6 @@ class GetInvoice extends ComponentDialog {
 
         await stepContext.context.sendActivity(`You will receive ${ input } invoice in your email`);
         return await stepContext.endDialog();
-    }
-
-    createHeroCardMobile() {
-        return CardFactory.heroCard(
-            'Mobile',
-            CardFactory.images(['https://i.ibb.co/kXcKFjc/neee.jpg']),
-            CardFactory.actions([
-                {
-                    type: 'imBack',
-                    title: 'Get Invoice',
-                    value: 'mobile'
-
-                }
-            ])
-        );
-    }
-
-    createHeroCardLaptop() {
-        return CardFactory.heroCard(
-            'Laptop',
-            CardFactory.images(['https://i.ibb.co/drksR5q/newmac.jpg']),
-            CardFactory.actions([
-                {
-                    type: 'imBack',
-                    title: 'Get Invoice',
-                    value: 'laptop'
-                }
-            ])
-        );
-    }
-
-    createHeroCardMonitor() {
-        return CardFactory.heroCard(
-            'Monitor',
-            CardFactory.images(['https://i.ibb.co/CWNk3F4/newmon.jpg']),
-            CardFactory.actions([
-                {
-                    type: 'imBack',
-                    title: 'Get Invoice',
-                    value: 'monitor'
-                }
-            ])
-        );
     }
 
     createReceiptCardMouse() {
@@ -243,9 +205,58 @@ class GetInvoice extends ComponentDialog {
             version: '1.0'
         });
     }
+
+    createReceiptCardData(product, image, orderNumber, paymentMethod, price, tax, total) {
+        return CardFactory.adaptiveCard({
+            type: 'AdaptiveCard',
+            body: [
+                {
+                    type: 'TextBlock',
+                    size: 'Medium',
+                    weight: 'Bolder',
+                    text: 'Receipt',
+                    horizontalAlignment: 'Center',
+                    fontType: 'Monospace'
+                },
+                {
+                    type: 'TextBlock',
+                    text: product
+                },
+                {
+                    type: 'Image',
+                    altText: '',
+                    url: image
+                },
+                {
+                    type: 'FactSet',
+                    facts: [
+                        {
+                            title: 'Order Number:',
+                            value: orderNumber
+                        },
+                        {
+                            title: 'Payment Method',
+                            value: paymentMethod
+                        },
+                        {
+                            title: 'Price',
+                            value: price
+                        },
+                        {
+                            title: 'Tax',
+                            value: tax
+                        },
+                        {
+                            title: 'Total ',
+                            value: total
+                        }
+                    ]
+                }
+            ],
+            $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
+            version: '1.0'
+        });
+    }
 }
 
 module.exports.GetInvoice = GetInvoice;
-
-// I was adding the user email and password for login
-// implementing invoice

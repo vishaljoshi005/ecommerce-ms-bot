@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // Packages Imports
 const restify = require('restify');
-const { BotFrameworkAdapter, UserState, ConversationState } = require('botbuilder');
+const { BotFrameworkAdapter, UserState, ConversationState, MemoryStorage } = require('botbuilder');
 const { CosmosDbStorage } = require('botbuilder-azure');
 
 // Enviroment variable setup
@@ -55,12 +55,13 @@ const adapter = new BotFrameworkAdapter({
 });
 
 // Storage configurations
-const storage = new CosmosDbStorage({
-    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT,
-    authKey: process.env.AUTH_KEY,
-    databaseId: process.env.DATABASE,
-    collectionId: process.env.COLLECTION
-});
+// const storage = new CosmosDbStorage({
+//     serviceEndpoint: process.env.DB_SERVICE_ENDPOINT,
+//     authKey: process.env.AUTH_KEY,
+//     databaseId: process.env.DATABASE,
+//     collectionId: process.env.COLLECTION
+// });
+const storage = new MemoryStorage();
 
 const userState = new UserState(storage);
 const conversationState = new ConversationState(storage);
@@ -73,7 +74,7 @@ const contextState = userState.createProperty(CONTEXT_STATE);
 const USER_INFORMATION = 'USER_INFORMATION';
 const userInfoState = userState.createProperty(USER_INFORMATION);
 
-// Luis COnfigs
+// Luis Configs
 const { LuisAppId, LuisApiKey, LuisHostname } = process.env;
 const luisConfig = { applicationId: LuisAppId, endpointKey: LuisApiKey, endpoint: LuisHostname };
 

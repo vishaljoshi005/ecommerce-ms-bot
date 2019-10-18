@@ -154,7 +154,6 @@ class MainDialog extends ComponentDialog {
                 brand: this.luis.getBrand(result).brand,
                 color: this.luis.getColor(result).color,
                 size: this.luis.getSize(result).size
-                // Add other options begin here
             });
         }
 

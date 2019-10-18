@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 const { ComponentDialog,
     ChoicePrompt,
-    ChoiceFactory,
     WaterfallDialog,
     TextPrompt,
     Dialog } = require('botbuilder-dialogs');
 
-const { CardFactory, AttachmentLayoutTypes } = require('botbuilder');
+const { CardFactory } = require('botbuilder');
+
+const { Order } = require('../config/db.config');
 
 // const card = require('../cancelOrder.json');
 const card = require('../resources/cards/cancelOrder.json');
@@ -26,14 +27,14 @@ class CancelOrder extends ComponentDialog {
         this.addDialog(new TextPrompt(TEXT_PROMPT_ONE))
             .addDialog(new ChoicePrompt(CHOICE_PROMPT_ONE))
             .addDialog(new WaterfallDialog(CANCEL_ORDER_WATERFALL, [
-                this.firstStep.bind(this),
-                this.secondStep.bind(this)
+                this.showCard.bind(this),
+                this.cancelOrder.bind(this)
             ]));
 
         this.initialDialogId = CANCEL_ORDER_WATERFALL;
     }
 
-    async firstStep(stepContext) {
+    async showCard(stepContext) {
         await stepContext.context.sendActivity({
             attachments: [this.createAdaptiveCard()]
         });
@@ -43,19 +44,14 @@ class CancelOrder extends ComponentDialog {
         // return await stepContext.prompt(TEXT_PROMPT_ONE, 'Please enter your order number');
     }
 
-    async secondStep(stepContext) {
-        await timeout(2000);
-        await stepContext.context.sendActivity(`Your order number ${ stepContext.context.activity.value.order } is cancelled`);
+    async cancelOrder(stepContext) {
+        // await timeout(2000);
+        const orderNumber = stepContext.context.activity.value.order;
+        const reason = stepContext.context.activity.value.reason;
+        const data = await Order.findOneAndUpdate({ orderNumber }, { status: 'cancel', reason });
+        await stepContext.context.sendActivity(`Your order number ${ orderNumber } is cancelled`);
 
         await timeout(5000);
-        return stepContext.endDialog();
-    }
-
-    async finalStep(stepContext) {
-        await stepContext.context
-            .sendActivity(`Your order number ${ stepContext.values.order } is cancelled. Checkout our new www.amazon.in`);
-
-        await timeout(4000);
         return stepContext.endDialog();
     }
 
